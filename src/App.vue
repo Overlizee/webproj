@@ -1,30 +1,25 @@
 <template>
     <div id="app">
-        <h1>Home</h1>
-        <!--     <MatchList />      -->
-
-        <WorldCupMatch/>
-        
+        <Home/>
     </div>
 </template>
 
 <script>
-    import WorldCupMatch from './components/WorldCupMatch.vue'
+    import Home from './page/HomePage.vue'
     export default {
+        name:'App',
         components:{
-            WorldCupMatch
-        },
-    };
+            Home
+        }
+    }
 </script>
 
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    @import url('./style/reset.css');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto%3Awght%40300%3B400%3B700&display=swap');
+    #app {
+        font-family: 'Roboto', sans-serif;
+        padding: 20px;
+    }
 </style>
