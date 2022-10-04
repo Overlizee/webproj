@@ -1,18 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="app">
+        <h1>Home</h1>
+        <!--     <MatchList />      -->
+
+        <WorldCupMatch/>
+        
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    import WorldCupMatch from './components/WorldCupMatch.vue'
+    export default {
+        components:{
+            WorldCupMatch
+        },
+    };
 </script>
+
 
 <style>
 #app {
