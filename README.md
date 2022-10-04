@@ -23,8 +23,10 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## To do before launching, as we use scss :
+## To do before launching, as we use scss and routers :
 ```
 npm install sass-loader
 npm install sass
+
+npm install vue-router@4
 ```
