@@ -7,12 +7,14 @@
         <div class="wrapper--input">
             <input v-model="user_search_match" type="text" placeholder="What are you searching for ?">
             <div class="search">
-                <div v-for="(match, i) in search_match" :key="i" class="container--match--search">
-                    <div class="wrapper--img">
-                        <img :src="match.country1_img" alt="">
+                <router-link v-for="(match, i) in search_match" :key="i" :to="{name: 'Match', params: {name: match.id}}">
+                    <div class="container--match--search">
+                        <div class="wrapper--img">
+                            <img :src="match.country1_img" alt="">
+                        </div>
+                        <p>{{match.country1}}</p>
                     </div>
-                    <p>{{match.country1}}</p>
-                </div>
+                </router-link>
             </div>
         </div>
         
@@ -39,7 +41,8 @@ export default {
     },
     setup(){
         class Match{
-            constructor (date, time, round, group, country1, country1_img, country2, country2_img, stadium, capacity_stadium, city_stadium){
+            constructor (id, date, time, round, group, country1, country1_img, country2, country2_img, stadium, capacity_stadium, city_stadium){
+                this.id=id
                 this.date=date
                 this.time = time
                 this.round = round
@@ -60,7 +63,7 @@ export default {
 
             let three_matches = [];
             for (const match of BDD){
-                const new_match = new Match(match.date, match.time, match.round, match.group, match.country1, match.country1_img, match.country2, match.country2_img, match.stadium, match.capacity_stadium, match.city_stadium)
+                const new_match = new Match(match.id, match.date, match.time, match.round, match.group, match.country1, match.country1_img, match.country2, match.country2_img, match.stadium, match.capacity_stadium, match.city_stadium)
 
                 //array for all matches
                 all_matches.push(new_match);
