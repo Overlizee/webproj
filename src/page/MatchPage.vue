@@ -1,71 +1,98 @@
 <template>
-  <div class="MatchPage">
-    <p>{{$route.params.name}}</p>
-  </div>
+    <div class="MatchPage">
+        <div class="header">
+            <MainLogo/>
+        </div>
+        <p>aaaaaaaaaaa</p>
+        <p id="route_match">Original route : {{$route.params.name}}</p>
+        
+        <p>Object with hardcode value : {{matchhhhh}}</p>
+        <p>Object with good value : {{current_match}}</p>
+
+        <match-card :info_match="current_match"/>
+
+
+    </div>
 </template>
 
 <script>
-//IMPORT BDD
-import BDD from '../bdd'
-import {onMounted} from 'vue'
-//COMPONENTS
-export default {
-    name:'MatchPage',
-    setup(){
-        class Match{
-            constructor (id, date, time, round, group, country1, country1_img, country2, country2_img, stadium, capacity_stadium, city_stadium){
-                this.id=id
-                this.date=date
-                this.time = time
-                this.round = round
-                this.group = group
-                this.country1=country1
-                this.country1_img = country1_img
-                this.country2 = country2
-                this.country2_img = country2_img
-                this.stadium=stadium
-                this.capacity_stadium = capacity_stadium
-                this.city_stadium = city_stadium
-            }
-        }
-        //$route.params.name
-        const makeDataMatch = () =>{
-            for (const match of BDD){
-                if (match.id == 0){
-                    const given_match = new Match(match.id, match.date, match.time, match.round, match.group, match.country1, match.country1_img, match.country2, match.country2_img, match.stadium, match.capacity_stadium, match.city_stadium)
+    import BDD from '../bdd'
+    import {ref} from 'vue'
+    import MatchCard from '../components/MatchCard.vue'
+    import MainLogo from '../components/MainLogo.vue'
+import { getCurrentInstance } from '@vue/runtime-core'
+    export default {
+        name:'MatchPage',
+        components:{
+            MatchCard,
+            MainLogo
+        },
+        setup(){
+            class Match{
+                constructor (id, date, time, round, group, country1, country1_img, country2, country2_img, stadium, capacity_stadium, city_stadium){
+                    this.id=id
+                    this.date=date
+                    this.time = time
+                    this.round = round
+                    this.group = group
+                    this.country1=country1
+                    this.country1_img = country1_img
+                    this.country2 = country2
+                    this.country2_img = country2_img
+                    this.stadium=stadium
+                    this.capacity_stadium = capacity_stadium
+                    this.city_stadium = city_stadium
                 }
             }
-        }
 
-        let data_match = ref([]);
-        let all_matches = [];
-        const makeDataMatch = () =>{
-            let current_match = [];
-            for (const match of BDD){
-                const new_match = new Match(match.id, match.date, match.time, match.round, match.group, match.country1, match.country1_img, match.country2, match.country2_img, match.stadium, match.capacity_stadium, match.city_stadium)
+            //get match index from route
+            const getinstance = getCurrentInstance();
+            const index_match = getinstance.proxy.$route.params.name;
 
-                //array for all matches
-                all_matches.push(new_match);
-                //array for matches by 3
-                three_matches.push(new_match);
-                if(three_matches.length == 3){
-                    data_match.value.push(three_matches);
-                    three_matches = [];
+            var all_matches = [];
+            //all_matches.push(2);
+            const makeDataMatch = () =>{
+                //console.log(BDD);
+               // all_matches.push(1);
+                for (const match of BDD){
+                    const new_match = new Match(match.id, match.date, match.time, match.round, match.group, match.country1, match.country1_img, match.country2, match.country2_img, match.stadium, match.capacity_stadium, match.city_stadium)
+                    all_matches.push(new_match);
                 }
             }
-            data_match.value.push(three_matches);
+            //onMounted(makeDataMatch);
+            makeDataMatch();
+            const matchhhhh = new Match('1','2022-11-20','16:00','1','A','Qatar','https://lesplusbeauxdrapeauxdumonde.files.wordpress.com/2017/03/qatar-162396_1280.png?w=600&h=400','Ecuador','https://lesplusbeauxdrapeauxdumonde.files.wordpress.com/2016/09/ecuador-162283_1280.png?w=600&h=400','Al Bayt Stadium','60000','Al Khor')
+            
+            let current_match = ref(all_matches[index_match]);
+        
+            return {
+                matchhhhh,
+                current_match
+            }
         }
+    }
+</script>
 
-        onMounted(makeDataMatch);
+<style lang="scss">
+.MatchPage{
 
-        //return
-        return {
-            given_match,
+    .header{
+        height: 120px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .main_logo{
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+        
+        img{
+            width: 200px;
         }
     }
 }
-</script>
-
-<style>
 
 </style>

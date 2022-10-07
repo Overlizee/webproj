@@ -1,36 +1,28 @@
 <template>
     <div class="match--card"> 
-        <router-link style="text-decoration: none; color: inherit;" :to="{name: 'Match', params: {name: info_match.id}}">
-            <div class="match--image">
-                <div :style="changeBackground" class="image1">
-                </div>
-                <p>-</p>
-                <div :style="changeBackground2" class="image2">
-                </div>
+        <div class="match--image">
+            <div :style="changeBackground" class="image1">
             </div>
-
-            <div class="match--information">
-                <div class="top">
-                    <p class="match">
-                        {{info_match.country1}} - {{info_match.country2}}
-                    </p>
-                    <p class="time">
-                        <span>
-                            {{info_match.time}}
-                        </span>
-                    </p>
-                </div>
-                <div class="bottom">
-                    <p class="stadium">
-                        {{info_match.stadium}} - {{info_match.city_stadium}}
-                    </p>
-
-                    <p class="groupe_info">
-                        {{info_match.group}}
-                    </p>
-                </div>
+            <div :style="changeBackground2" class="image2">
             </div>
-        </router-link>
+        </div>
+
+        <div class="match--information">
+            <div class="top">
+                <p class="match">
+                    {{info_match.country1}} - {{info_match.country2}}
+                </p>
+                <p class="time">
+                    <span>
+                        {{info_match.time}}
+                    </span>
+                </p>
+            </div>
+            <p class="time">
+                {{info_match.stadium}} - {{info_match.city_stadium}}
+            </p>
+                
+        </div>
     </div>
 </template>
 
@@ -68,12 +60,9 @@ import {computed} from 'vue'
 .match--card{
     width: 32%;
     height: 30vh;
-    background-color:#dcdcdc;
     
-    &:hover{
-        transform: scale(1.1);
-    }
-    
+    border: solid;
+    border-color: black;
     p{
         margin: 0px;
     }
@@ -83,11 +72,9 @@ import {computed} from 'vue'
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        p{
-            color: #962b46;
-            font-size: 2rem;
-        }
+        
+        border: solid;
+        border-color: black;
 
         .image1{
             background-image: url("https://lesplusbeauxdrapeauxdumonde.files.wordpress.com/2017/03/qatar-162396_1280.png");
@@ -96,6 +83,9 @@ import {computed} from 'vue'
             height: 70%;
             width: 40%;
             margin: 0.5rem;
+            border: solid;
+            border-color: black;
+
         }
 
         .image2{
@@ -105,55 +95,32 @@ import {computed} from 'vue'
             height: 70%;
             width: 40%;
             margin: 0.5rem;
+            border: solid;
+            border-color: black;
         }
     }
     .match--information{
-
-        border-top: solid #962b46;
-        padding-top : 3px;
-        border-width: 2px;
         .top{
             margin: 5px 5px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            
-            .match{
-                font-weight: bold;
-                color: #962b46;
-            }
 
             .time{
-                background-color: #962b46;
-                color: white;
+                background-color: grey;
                 height: 100%;
                 width: 10%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 0.8rem;
-                border-radius: 10%;
+                border-radius: 25%;
             }
-        }
-
-        .bottom{
-            margin: 0 5px 5px 5px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            
-            .stadium{
-                color: #962b46;
-            }
-
-            .groupe_info{
-                font-weight: bold;
-                color: #962b46;
-            }
-
         }
         
-
+        .time{
+            font-size: 0.9rem;
+        }
     }
     
 }

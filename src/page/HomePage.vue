@@ -1,31 +1,31 @@
 <template>
-  <div class="HomePage">
-
-    <div class="header">
-        <img src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/ee037401cb5d31b23cf780808ee4ec1f.svg" alt="" srcset="">
-        
-        <div class="wrapper--input">
-            <input v-model="user_search_match" type="text" placeholder="What are you searching for ?">
-            <div class="search">
-                <router-link v-for="(match, i) in search_match" :key="i" :to="{name: 'Match', params: {name: match.id}}">
-                    <div class="container--match--search">
-                        <div class="wrapper--img">
-                            <img :src="match.country1_img" alt="">
+    <div class="HomePage">
+        <div class="header">
+            <MainLogo/>
+            
+            <div class="wrapper--input">
+                <input v-model="user_search_match" type="text" placeholder="What are you searching for ?">
+                <div class="search">
+                    <router-link style="text-decoration: none; color: inherit;" v-for="(match, i) in search_match" :key="i" :to="{name: 'Match', params: {name: match.id}}">
+                        <div class="container--match--search">
+                            <div class="wrapper--img">
+                                <img :src="match.country1_img" alt="">
+                            </div>
+                            <p>{{match.country1}} - {{match.country2}}</p>
+                            <div class="wrapper--img2">
+                                <img :src="match.country2_img" alt="">
+                            </div>
                         </div>
-                        <p>{{match.country1}}</p>
-                    </div>
-                </router-link>
+                    </router-link>
+                </div>
             </div>
         </div>
-        
-        
+        <div class="banner">
+        </div>
+        <div class="matches_display">
+            <match-row v-for="(data, i) in data_match" :key="i" :list_matches="data"/>
+        </div>
     </div>
-    <div class="banner">
-
-    </div>
-
-    <match-row v-for="(data, i) in data_match" :key="i" :three_matches="data"/>
-  </div>
 </template>
 
 <script>
@@ -34,10 +34,12 @@ import BDD from '../bdd'
 import {onMounted, ref, watch} from 'vue'
 //COMPONENTS
 import MatchRow from '../components/MatchRow.vue'
+import MainLogo from '../components/MainLogo.vue'
 export default {
     name:'HomePage',
     components:{
-        MatchRow
+        MatchRow,
+        MainLogo,
     },
     setup(){
         class Match{
@@ -61,20 +63,20 @@ export default {
         let all_matches = [];
         const makeDataMatch = () =>{
 
-            let three_matches = [];
+            let list_matches = [];
             for (const match of BDD){
                 const new_match = new Match(match.id, match.date, match.time, match.round, match.group, match.country1, match.country1_img, match.country2, match.country2_img, match.stadium, match.capacity_stadium, match.city_stadium)
 
                 //array for all matches
                 all_matches.push(new_match);
-                //array for matches by 3
-                three_matches.push(new_match);
-                if(three_matches.length == 3){
-                    data_match.value.push(three_matches);
-                    three_matches = [];
+                //array for matches by 4
+                list_matches.push(new_match);
+                if(list_matches.length == 3){
+                    data_match.value.push(list_matches);
+                    list_matches = [];
                 }
             }
-            data_match.value.push(three_matches);
+            data_match.value.push(list_matches);
         }
 
         //Search option to search for a match - ref is because it will always change
@@ -117,6 +119,12 @@ export default {
         align-items: center;
         justify-content: space-between;
 
+        .main_logo{
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+
         img{
             width: 200px;
         }
@@ -130,6 +138,7 @@ export default {
                 height: 60px;
                 width: 400px;
                 outline: none;
+                padding-left: 10px;
             }
 
             .search{
@@ -137,22 +146,37 @@ export default {
                 top: 100%;
                 width: 100%;
                 background-color: #fff;
+
+                router-link{
+                    text-decoration: none;
+                    text-transform: uppercase;
+                }
     
 
                 .container--match--search{
                     display: flex;
                     align-items: center;
+                    justify-content: center;
                     padding: 10px;
-
-                    &:hover{
-                        background-color: #f6f6f6;
-                    }
-
 
                     .wrapper--img{
                         height: 60px;
                         width: 60px;
                         margin-right: 25px;
+                        border-radius: 50%;
+                        border: solid #962b46;
+                        overflow: hidden;
+                        
+                        img{
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+
+                    .wrapper--img2{
+                        height: 60px;
+                        width: 60px;
+                        margin-left: 25px;
                         border-radius: 50%;
                         overflow: hidden;
                         
@@ -170,7 +194,7 @@ export default {
     .banner{
         height: 200px;
         width: 100%;
-        background-image: url("https://www.ubereats.com/restaurant/_static/7b308f7cbbf8e335ceda0447a8bd7c63.png");
+        background-image: url("https://media.discordapp.net/attachments/623530952932720671/1027936716897669140/banner.png?width=1440&height=552");
         background-size: cover;
         background-position: center center;
     }

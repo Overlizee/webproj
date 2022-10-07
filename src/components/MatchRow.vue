@@ -1,11 +1,9 @@
 <template>
   <div class="match--row" >
     <h2 class="title">
-        The Matches
-
     </h2>
     <div class="wrapper--card">
-        <match-card v-for="(card, index) in three_matches" :info_match="card" :key="index"/>
+        <match-card v-for="(card, index) in list_matches" :info_match="card" :key="index"/>
     </div>
   </div>
 </template>
@@ -18,7 +16,7 @@ import MatchCard from './MatchCard.vue'
             MatchCard,
         },
         props:{
-            three_matches: Array
+            list_matches: Array
         }
 
     }
