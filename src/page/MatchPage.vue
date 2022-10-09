@@ -1,12 +1,9 @@
 <template>
     <div class="MatchPage">
-        <div class="header">
-            <MainLogo/>
-        </div>
+        <MainLogo/>
         <p>aaaaaaaaaaa</p>
         <p id="route_match">Original route : {{$route.params.name}}</p>
         
-        <p>Object with hardcode value : {{matchhhhh}}</p>
         <p>Object with good value : {{current_match}}</p>
 
         <match-card :info_match="current_match"/>
@@ -19,8 +16,8 @@
     import BDD from '../bdd'
     import {ref} from 'vue'
     import MatchCard from '../components/MatchCard.vue'
-    import MainLogo from '../components/MainLogo.vue'
-import { getCurrentInstance } from '@vue/runtime-core'
+    import MainLogo from '../components/HeaderMain.vue'
+    import { getCurrentInstance } from '@vue/runtime-core'
     export default {
         name:'MatchPage',
         components:{
@@ -50,7 +47,6 @@ import { getCurrentInstance } from '@vue/runtime-core'
             const index_match = getinstance.proxy.$route.params.name;
 
             var all_matches = [];
-            //all_matches.push(2);
             const makeDataMatch = () =>{
                 //console.log(BDD);
                // all_matches.push(1);
@@ -59,14 +55,11 @@ import { getCurrentInstance } from '@vue/runtime-core'
                     all_matches.push(new_match);
                 }
             }
-            //onMounted(makeDataMatch);
             makeDataMatch();
-            const matchhhhh = new Match('1','2022-11-20','16:00','1','A','Qatar','https://lesplusbeauxdrapeauxdumonde.files.wordpress.com/2017/03/qatar-162396_1280.png?w=600&h=400','Ecuador','https://lesplusbeauxdrapeauxdumonde.files.wordpress.com/2016/09/ecuador-162283_1280.png?w=600&h=400','Al Bayt Stadium','60000','Al Khor')
             
             let current_match = ref(all_matches[index_match]);
         
             return {
-                matchhhhh,
                 current_match
             }
         }
@@ -74,25 +67,5 @@ import { getCurrentInstance } from '@vue/runtime-core'
 </script>
 
 <style lang="scss">
-.MatchPage{
-
-    .header{
-        height: 120px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .main_logo{
-            &:hover{
-                transform: scale(1.1);
-            }
-        }
-        
-        img{
-            width: 200px;
-        }
-    }
-}
 
 </style>

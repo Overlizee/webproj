@@ -1,25 +1,6 @@
 <template>
     <div class="HomePage">
-        <div class="header">
-            <MainLogo/>
-            
-            <div class="wrapper--input">
-                <input v-model="user_search_match" type="text" placeholder="What are you searching for ?">
-                <div class="search">
-                    <router-link style="text-decoration: none; color: inherit;" v-for="(match, i) in search_match" :key="i" :to="{name: 'Match', params: {name: match.id}}">
-                        <div class="container--match--search">
-                            <div class="wrapper--img">
-                                <img :src="match.country1_img" alt="">
-                            </div>
-                            <p>{{match.country1}} - {{match.country2}}</p>
-                            <div class="wrapper--img2">
-                                <img :src="match.country2_img" alt="">
-                            </div>
-                        </div>
-                    </router-link>
-                </div>
-            </div>
-        </div>
+        <MainLogo/>
         <div class="banner">
         </div>
         <div class="matches_display">
@@ -34,7 +15,7 @@ import BDD from '../bdd'
 import {onMounted, ref, watch} from 'vue'
 //COMPONENTS
 import MatchRow from '../components/MatchRow.vue'
-import MainLogo from '../components/MainLogo.vue'
+import MainLogo from '../components/HeaderMain.vue'
 export default {
     name:'HomePage',
     components:{
@@ -112,84 +93,6 @@ export default {
 
 <style lang="scss">
 .HomePage{
-    .header{
-        height: 120px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .main_logo{
-            &:hover{
-                transform: scale(1.1);
-            }
-        }
-
-        img{
-            width: 200px;
-        }
-
-        .wrapper--input{
-            position: relative;
-
-            input{
-                background-color: #f6f6f6;
-                border: none;
-                height: 60px;
-                width: 400px;
-                outline: none;
-                padding-left: 10px;
-            }
-
-            .search{
-                position: absolute;
-                top: 100%;
-                width: 100%;
-                background-color: #fff;
-
-                router-link{
-                    text-decoration: none;
-                    text-transform: uppercase;
-                }
-    
-
-                .container--match--search{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 10px;
-
-                    .wrapper--img{
-                        height: 60px;
-                        width: 60px;
-                        margin-right: 25px;
-                        border-radius: 50%;
-                        border: solid #962b46;
-                        overflow: hidden;
-                        
-                        img{
-                            height: 100%;
-                            width: 100%;
-                        }
-                    }
-
-                    .wrapper--img2{
-                        height: 60px;
-                        width: 60px;
-                        margin-left: 25px;
-                        border-radius: 50%;
-                        overflow: hidden;
-                        
-                        img{
-                            height: 100%;
-                            width: 100%;
-                        }
-                    }
-
-                }
-            }
-        }
-    }
 
     .banner{
         height: 200px;

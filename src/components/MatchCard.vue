@@ -1,6 +1,6 @@
 <template>
     <div class="match--card"> 
-        <router-link style="text-decoration: none; color: inherit;" :to="{name: 'Match', params: {name: info_match.id}}">
+        <router-link style="text-decoration: none; color: inherit;" onclick=window.location.reload() :to="{name: 'Match', params: {name: (info_match.id - 1)}}">
             <div class="match--image">
                 <div :style="changeBackground" class="image1">
                 </div>
@@ -35,8 +35,8 @@
 </template>
 
 <script>
-//import
-import {computed} from 'vue'
+    //import
+    import {computed} from 'vue'
     export default {
         match:"MatchCard",
         props:{
@@ -53,13 +53,15 @@ import {computed} from 'vue'
                 return{
                     backgroundImage: `url(${props.info_match.country2_img})`
                 }
-            })    
+            })
+            
             //return
             return{
                 changeBackground,
-                changeBackground2
+                changeBackground2,
             }
         }
+        
     }
 </script>
 
