@@ -1,11 +1,12 @@
 <template>
     <div class="HomePage">
-        <MainLogo/>
+        <HeaderMain/>
         <div class="banner">
         </div>
         <div class="matches_display">
             <match-row v-for="(data, i) in data_match" :key="i" :list_matches="data"/>
         </div>
+        <FooterMain/>
     </div>
 </template>
 
@@ -15,12 +16,14 @@ import BDD from '../bdd'
 import {onMounted, ref, watch} from 'vue'
 //COMPONENTS
 import MatchRow from '../components/MatchRow.vue'
-import MainLogo from '../components/HeaderMain.vue'
+import HeaderMain from '../components/HeaderMain.vue'
+import FooterMain from '../components/FooterMain.vue'
 export default {
     name:'HomePage',
     components:{
         MatchRow,
-        MainLogo,
+        HeaderMain,
+        FooterMain
     },
     setup(){
         class Match{

@@ -17,5 +17,6 @@
     #app {
         font-family: 'Roboto', sans-serif;
         padding: 0px 20px;
+        background-color: hsl(0, 0%, 100%);
     }
 </style>

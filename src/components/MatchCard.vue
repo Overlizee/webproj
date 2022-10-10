@@ -22,13 +22,23 @@
                 </div>
                 <div class="bottom">
                     <p class="stadium">
-                        {{info_match.stadium}} - {{info_match.city_stadium}}
+                        {{info_match.stadium}}
                     </p>
 
                     <p class="groupe_info">
-                        {{info_match.group}}
+                        {{info_match.date}}
                     </p>
                 </div>
+                <div class="bottom">
+                    <p class="stadium">
+                        {{info_match.city_stadium}}
+                    </p>
+
+                    <p class="groupe_info">
+                        {{info_match.group == "Knockout" ? info_match.round : info_match.group  }}
+                    </p>
+                </div>
+            
             </div>
         </router-link>
     </div>
@@ -69,7 +79,7 @@
 
 .match--card{
     width: 32%;
-    height: 30vh;
+    height: 33vh;
     background-color:#dcdcdc;
     
     &:hover{
@@ -81,7 +91,7 @@
     }
 
     .match--image{
-        height: 70%;
+        height: 65%;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -114,6 +124,7 @@
         border-top: solid #962b46;
         padding-top : 3px;
         border-width: 2px;
+        height: 40%;
         .top{
             margin: 5px 5px;
             display: flex;
@@ -134,7 +145,7 @@
                 align-items: center;
                 justify-content: center;
                 font-size: 0.8rem;
-                border-radius: 10%;
+                border-radius: 10px;
             }
         }
 

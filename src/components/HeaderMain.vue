@@ -7,7 +7,11 @@
                 </router-link>
             </div>
             
+    
             <div class="wrapper--input">
+                <router-link style="text-decoration: none; color: inherit; margin-right:5%;" :to="{path: '/login'}">
+                    <img src="../assets/login_logo.png" alt="">
+                </router-link>
                 <input v-model="user_search_match" type="text" placeholder="What are you searching for ?">
                 <div class="search">
                     <router-link style="text-decoration: none; color: inherit;" onclick=window.location.reload() v-for="(match, i) in search_match" :key="i" :to="{name: 'Match', params: {name: match.id - 1}}">
@@ -106,11 +110,18 @@ export default {
         }
 
         img{
-            width: 200px;
+            width: 250px;
         }
 
         .wrapper--input{
             position: relative;
+            display: flex;
+            align-items: center;
+
+            img{
+                height: 50px;
+                width: auto;
+            }
 
             input{
                 background-color: #f6f6f6;
