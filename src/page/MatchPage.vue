@@ -50,7 +50,10 @@
 
             //get match index from route
             const getinstance = getCurrentInstance();
+            console.log(getinstance);
             const index_match = getinstance.proxy.$route.params.name;
+            console.log("tpe is : "+typeof(index_match));
+            console.log(index_match);
 
             var all_matches = [];
             const makeDataMatch = () =>{

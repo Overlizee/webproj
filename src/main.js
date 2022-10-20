@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import {createRouter, createWebHashHistory} from 'vue-router';
+
 import Home from './page/HomePage.vue'
 import Match from './page/MatchPage.vue'
 import Login from './page/LoginPage.vue'
